@@ -11,7 +11,7 @@ It can be used as a blueprint for provisioning a Twilio Flex  contact center usi
 * [Setup](#setup)
 * [Maintainer](#maintainer)
 
-## Why infrastructure as code?
+## Why IaC?
 
 Provisioning and managing your contact center infrastructure as code offers several benefits, including:
 - *Efficiency*: using IaC, you can automate the provisioning of your resources, leading to faster deployment of your contact center infrastructure.
@@ -20,7 +20,7 @@ Provisioning and managing your contact center infrastructure as code offers seve
 
 ## Design
 
-![Diagram](diagram.png?raw=true)
+![Diagram](images/diagram.png?raw=true)
 
 A Twilio Flex contact center deployment usually consists of the following components:
 - *Studio:* Studio is a visual application builder for creating communication workflows for your contact center, such as IVRs. Studio integrates with TaskRouter to route incoming interactions to the appropriate workflow. 
@@ -62,9 +62,21 @@ The terraform configuration included in this repository includes all three compo
     You can also set these as environment variables - when doing so, remember to prefix the variables names with `TF_VAR_`. E.g. `TF_VAR_FLEX_WORKFLOW_SID`.
 
 Once Terraform deploys the configuration, it will output the following variables:
-- `VOICE_IVR_FLOW`: the name of the Studio flow, used for the IVR
-- `TASKROUTER_WORKSPACE`: name of the Taskrouter workspace with the routing configuration
-- `PLUGIN_SAMPLE`: the name of sample plugin that was deployed
+- `VOICE_IVR_FLOW`: the name of the Studio flow, used for the IVR (*Voice IVR Flow with Terraform*)
+- `TASKROUTER_WORKSPACE`: name of the Taskrouter workspace with the routing configuration (*Flex Task Assignment*)
+- `PLUGIN_SAMPLE`: the name of sample plugin that was deployed (*plugin-sample*)
+
+That's it! Now you have a complete, Flex instance, deployed in your Twilio account.
+
+<p float="left">
+  <img src="images/flow.jpg" height="60" width="100"/>
+  <img src="images/taskrouter.jpg" height="60" width="100" /> 
+  <img src="images/ui.jpg" height="60" width="100" />
+</p>
+
+To start using it, buy a phone number and associate it with the studio flow that was just deployed. Then log in to Flex and wait for the tasks to come your way! :)
+
+
 
 ## Maintainer
 Thanks for reading this far!
