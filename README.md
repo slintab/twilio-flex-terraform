@@ -20,7 +20,7 @@ Provisioning and managing your contact center infrastructure as code offers seve
 
 ## Design
 
-![Diagram](images/diagram.png?raw=true)
+![Diagram](images/diagram.png)
 
 A Twilio Flex contact center deployment usually consists of the following components:
 - *Studio:* Studio is a visual application builder for creating communication workflows for your contact center, such as IVRs. Studio integrates with TaskRouter to route incoming interactions to the appropriate workflow. 
@@ -54,7 +54,7 @@ The terraform configuration included in this repository includes all three compo
         The voice task channel sid can be located in the console, under *Taskrouter > Workspaces > Flex Task Assignment > Task Channels > Voice*.
 
 4. Create the execution plan: `terraform plan --out flex.plan`.
-5. Apply the configuration, creating the resources: `terraform apply`. Terraform will prompt for the following variables: 
+5. Apply the configuration, creating the resources: `terraform apply flex.plan`. Terraform will prompt for the following variables: 
     - `TWILIO_ACCOUNT_SID` - Account SID to use for deployment
     - `TWILIO_API_KEY` - API key to use for deployment 
     - `TWILIO_API_SECRET` - API secret to use for deployment
