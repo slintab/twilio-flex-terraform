@@ -4,7 +4,6 @@ This repository contains terraform configuration for deploying a [Twilio Flex](h
 
 It can be used as a blueprint for provisioning a Twilio Flex  contact center using code. 
 
-
 ## Table of contents
 * [Why IaC?](#iac)
 * [Structure](#structure)
@@ -20,6 +19,7 @@ Provisioning and managing your contact center infrastructure as code offers seve
 - *Version control*: with IaC, you can version control your infrastructure, which makes it easy to track and audit changes, as well as to switch between different versions of your contact center configuration.
 
 ## Design
+
 ![Diagram](diagram.png?raw=true)
 
 A Twilio Flex contact center deployment usually consists of the following components:
@@ -37,6 +37,7 @@ The terraform configuration included in this repository includes all three compo
 - **terraform/**: Terraform configuration
 
 ## Setup
+
 0. Install Terraform and create a Twilio Flex account.
 1. Navigate to the terraform directory: `cd terraform/environments/dev`
 2. Initialize the terraform configuration: `terraform init`
@@ -54,16 +55,16 @@ The terraform configuration included in this repository includes all three compo
 
 4. Create the execution plan: `terraform plan --out flex.plan`.
 5. Apply the configuration, creating the resources: `terraform apply`. Terraform will prompt for the following variables: 
-        - `TWILIO_ACCOUNT_SID` - Account SID to use for deployment
-        - `TWILIO_API_KEY` - API key to use for deployment 
-        - `TWILIO_API_SECRET` - API secret to use for deployment
+    - `TWILIO_ACCOUNT_SID` - Account SID to use for deployment
+    - `TWILIO_API_KEY` - API key to use for deployment 
+    - `TWILIO_API_SECRET` - API secret to use for deployment
+    
+    You can also set these as environment variables - when doing so, remember to prefix the variables names with `TF_VAR_`. E.g. `TF_VAR_FLEX_WORKFLOW_SID`.
 
-        You can also set these as environment variables - when doing so, remember to prefix the variables names with `TF_VAR_`. E.g. `TF_VAR_FLEX_WORKFLOW_SID`.
-
-        Once Terraform deploys the configuration, it will output the following variables:
-        - `VOICE_IVR_FLOW`: the name of the Studio flow, used for the IVR
-        - `TASKROUTER_WORKSPACE`: name of the Taskrouter workspace with the routing configuration
-        - `PLUGIN_SAMPLE`: the name of sample plugin that was deployed
+Once Terraform deploys the configuration, it will output the following variables:
+- `VOICE_IVR_FLOW`: the name of the Studio flow, used for the IVR
+- `TASKROUTER_WORKSPACE`: name of the Taskrouter workspace with the routing configuration
+- `PLUGIN_SAMPLE`: the name of sample plugin that was deployed
 
 ## Maintainer
 Thanks for reading this far!
