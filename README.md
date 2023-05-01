@@ -41,7 +41,7 @@ The terraform configuration included in this repository includes all three compo
 0. Install Terraform and create a Twilio Flex account.
 1. Navigate to the terraform directory: `cd terraform/environments/dev`
 2. Initialize the terraform configuration: `terraform init`
-3. Import existing resources: when you create a Flex account, certain resources are automatically created for you. These are immutable and cannot be duplicated, and therefore need to imported into your terraform state. 
+3. Import existing resources: when you create a Flex account, certain resources are automatically created for you. These are immutable and therefore need to be imported into your terraform state manually. 
 
     - Start by importing your Taskrouter workspace, with the command:
     `terraform import module.routing twilio_taskrouter_workspaces_v1.flex <WORKSPACE_SID>`.
