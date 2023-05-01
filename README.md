@@ -29,6 +29,8 @@ A Twilio Flex contact center deployment usually consists of the following compon
 
 The terraform configuration included in this repository includes all three components: deploying the code will result in a complete Flex deployment, containing an IVR (Studio flow), routing configuration, and a sample Flex Plugin.
 
+More information on the terraform modules is available under their respective directories.
+
 ## Structure
 
 - **studio/**: Studio flow (IVR) configuration
