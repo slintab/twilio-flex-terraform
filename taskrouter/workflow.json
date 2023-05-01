@@ -1,0 +1,38 @@
+{
+"task_routing":{
+    "filters": [
+    {
+        "filter_friendly_name": "Sales task filter",
+        "expression": "type=='sales'",
+        "targets": [
+        {
+            "queue": "${SALES_QUEUE_SID}",
+            "priority": 10,
+            "timeout": 300
+
+        },
+        {
+            "queue": "${ALL_QUEUE_SID}"
+        }
+        ]
+    },
+    {
+        "filter_friendly_name": "Support task filter",
+        "expression": "type=='support'",
+        "targets": [
+        {
+            "queue": "${SUPPORT_QUEUE_SID}",
+            "priority": 10,
+            "timeout": 300
+        },
+        {
+            "queue": "${ALL_QUEUE_SID}"
+        }
+        ]
+    }
+    ],
+    "default_filter": {
+    "queue": "${ALL_QUEUE_SID}"
+    }
+}
+}

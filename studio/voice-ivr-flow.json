@@ -1,0 +1,277 @@
+{
+  "description": "IVR for creating a Flex voice task",
+  "states": [
+    {
+      "name": "Trigger",
+      "type": "trigger",
+      "transitions": [
+        {
+          "event": "incomingMessage"
+        },
+        {
+          "next": "Welcome",
+          "event": "incomingCall"
+        },
+        {
+          "event": "incomingConversationMessage"
+        },
+        {
+          "event": "incomingRequest"
+        },
+        {
+          "event": "incomingParent"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": 0,
+          "y": -10
+        }
+      }
+    },
+    {
+      "name": "SendCallToSales",
+      "type": "send-to-flex",
+      "transitions": [
+        {
+          "event": "callComplete"
+        },
+        {
+          "event": "failedToEnqueue"
+        },
+        {
+          "event": "callFailure"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": 150,
+          "y": 1350
+        },
+        "workflow": "${SALES_WORKFLOW_SID}",
+        "channel": "${SALES_CHANNEL_SID}",
+        "attributes": "{ \"type\": \"sales\", \"name\": \"{{trigger.call.From}}\" }"
+      }
+    },
+    {
+      "name": "Welcome",
+      "type": "say-play",
+      "transitions": [
+        {
+          "next": "Menu",
+          "event": "audioComplete"
+        }
+      ],
+      "properties": {
+        "voice": "alice",
+        "offset": {
+          "x": 210,
+          "y": 260
+        },
+        "loop": 1,
+        "say": "Hello and welcome to our Twilio Flex contact center, which was deployed using Terraform!",
+        "language": "en-US"
+      }
+    },
+    {
+      "name": "Menu",
+      "type": "gather-input-on-call",
+      "transitions": [
+        {
+          "next": "MenuSplitDigits",
+          "event": "keypress"
+        },
+        {
+          "next": "MenuSplitSpeech",
+          "event": "speech"
+        },
+        {
+          "next": "SendCallToAll",
+          "event": "timeout"
+        }
+      ],
+      "properties": {
+        "speech_timeout": "auto",
+        "offset": {
+          "x": 200,
+          "y": 470
+        },
+        "loop": 1,
+        "finish_on_key": "#",
+        "say": "To talk to support, say support or press 1. To speak to sales, say sales or press 2. For general inquiries say other or press 3.",
+        "stop_gather": true,
+        "gather_language": "en",
+        "profanity_filter": "true",
+        "timeout": 5
+      }
+    },
+    {
+      "name": "MenuSplitDigits",
+      "type": "split-based-on",
+      "transitions": [
+        {
+          "event": "noMatch"
+        },
+        {
+          "next": "SendCallToSupport",
+          "event": "match",
+          "conditions": [
+            {
+              "friendly_name": "If value equal_to 1",
+              "arguments": [
+                "{{widgets.Menu.Digits}}"
+              ],
+              "type": "equal_to",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "next": "SendCallToSales",
+          "event": "match",
+          "conditions": [
+            {
+              "friendly_name": "If value equal_to 2",
+              "arguments": [
+                "{{widgets.Menu.Digits}}"
+              ],
+              "type": "equal_to",
+              "value": "2"
+            }
+          ]
+        },
+        {
+          "next": "SendCallToAll",
+          "event": "match",
+          "conditions": [
+            {
+              "friendly_name": "If value equal_to 3",
+              "arguments": [
+                "{{widgets.Menu.Digits}}"
+              ],
+              "type": "equal_to",
+              "value": "3"
+            }
+          ]
+        }
+      ],
+      "properties": {
+        "input": "{{widgets.Menu.Digits}}",
+        "offset": {
+          "x": -410,
+          "y": 800
+        }
+      }
+    },
+    {
+      "name": "MenuSplitSpeech",
+      "type": "split-based-on",
+      "transitions": [
+        {
+          "event": "noMatch"
+        },
+        {
+          "next": "SendCallToSupport",
+          "event": "match",
+          "conditions": [
+            {
+              "friendly_name": "If value equal_to support",
+              "arguments": [
+                "{{widgets.Menu.SpeechResult}}"
+              ],
+              "type": "equal_to",
+              "value": "support"
+            }
+          ]
+        },
+        {
+          "next": "SendCallToSales",
+          "event": "match",
+          "conditions": [
+            {
+              "friendly_name": "If value equal_to sales",
+              "arguments": [
+                "{{widgets.Menu.SpeechResult}}"
+              ],
+              "type": "equal_to",
+              "value": "sales"
+            }
+          ]
+        },
+        {
+          "next": "SendCallToAll",
+          "event": "match",
+          "conditions": [
+            {
+              "friendly_name": "If value equal_to other",
+              "arguments": [
+                "{{widgets.Menu.SpeechResult}}"
+              ],
+              "type": "equal_to",
+              "value": "other"
+            }
+          ]
+        }
+      ],
+      "properties": {
+        "input": "{{widgets.Menu.SpeechResult}}",
+        "offset": {
+          "x": 90,
+          "y": 800
+        }
+      }
+    },
+    {
+      "name": "SendCallToSupport",
+      "type": "send-to-flex",
+      "transitions": [
+        {
+          "event": "callComplete"
+        },
+        {
+          "event": "failedToEnqueue"
+        },
+        {
+          "event": "callFailure"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": -430,
+          "y": 1240
+        },
+        "workflow": "${SUPPORT_WORKFLOW_SID}",
+        "channel": "${SUPPORT_CHANNEL_SID}",
+        "attributes": "{ \"type\": \"support\", \"name\": \"{{trigger.call.From}}\" }"
+      }
+    },
+    {
+      "name": "SendCallToAll",
+      "type": "send-to-flex",
+      "transitions": [
+        {
+          "event": "callComplete"
+        },
+        {
+          "event": "failedToEnqueue"
+        },
+        {
+          "event": "callFailure"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": 720,
+          "y": 800
+        },
+        "workflow": "${ALL_WORKFLOW_SID}",
+        "channel": "${ALL_CHANNEL_SID}",
+        "attributes": "{ \"name\": \"{{trigger.call.From}}\" }"
+      }
+    }
+  ],
+  "initial_state": "Trigger",
+  "flags": {
+    "allow_concurrent_calls": true
+  }
+}

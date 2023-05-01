@@ -1,6 +1,27 @@
 # This file is maintained automatically by "terraform init".
 # Manual edits may be lost in future updates.
 
+provider "registry.terraform.io/rjpearson94/twilio" {
+  version     = "0.17.0"
+  constraints = "0.17.0"
+  hashes = [
+    "h1:1tH1EHynamLNMl/thm9z+bTc7nxSJNuPt20Lphvf+14=",
+    "zh:1a8e5cd73c7648fa4a25f224736ef098e3e910b9e41d2299b9216980da391873",
+    "zh:1fbe7c75915b04be518ba1b0afca1c400a611d79277a93a94dfe6b1b5ab2bd36",
+    "zh:229ca87370edf658244aa517116561cea6e5e9a768a180458873541fdf951648",
+    "zh:41d772d5db79af6648772a705b5514871011579fec4e2fef114281d27b93609c",
+    "zh:7a0a30176ccbb67ebf6e7b8dc4e9241398b992a05aead62d37182a1aed9149c6",
+    "zh:94b5444f94d3a5643532b9e29353f4c5c63710db00605ef84296a622b8a57bc5",
+    "zh:a7154d024c2496076c23272f28f086a41d5ad2b381f017abe525a2338e118ee9",
+    "zh:b2b1f2b3aa389e4f25eb28a18d536c9eab48f02de64d2fec1bbd2210e310c1d6",
+    "zh:b7a3759fbb14db72fef6974f91457e5bd3e95e2ba2996eccefb2979cb10bd8b0",
+    "zh:becf02b2ff9ee559b0c1f71a181e2bfd4d61212fd644a1835f10cb2687114fca",
+    "zh:e2f9ef280ac8ad581728925e712116abc6e51475eb2f7d3ce75c5e9092617058",
+    "zh:f0c26a9c1a9d97381a6f54356b4ec8842d4e842e999511bf7f58afe2e5175d42",
+    "zh:feab4369f9224fa0bf9a2859111c8a7f3f41ee9ad58a7e3be776643171e43464",
+  ]
+}
+
 provider "registry.terraform.io/twilio/twilio" {
   version     = "0.18.20"
   constraints = ">= 0.4.0"

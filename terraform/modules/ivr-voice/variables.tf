@@ -8,6 +8,11 @@ variable "support_workflow_sid" {
   description = "SID of the Flex workflow to forward support-related calls to"
 }
 
+variable "all_workflow_sid" {
+  type        = string
+  description = "SID of the Flex workflow to forward other calls to"
+}
+
 variable "sales_channel_sid" {
   type        = string
   description = "SID of the Flex channel for sales-related calls"
@@ -16,4 +21,9 @@ variable "sales_channel_sid" {
 variable "support_channel_sid" {
   type        = string
   description = "SID of the Flex channel for support-related calls"
+}
+
+variable "all_channel_sid" {
+  type        = string
+  description = "SID of the Flex channel for other calls"
 }
