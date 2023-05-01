@@ -69,9 +69,9 @@ Once Terraform deploys the configuration, it will output the following variables
 That's it! Now you have a complete, Flex instance, deployed in your Twilio account.
 
 <p float="left">
-  <img src="images/flow.jpg" height="180" width="300"/>
-  <img src="images/taskrouter.jpg" height="180" width="300" /> 
-  <img src="images/ui.jpg" height="180" width="300" />
+  <img src="images/flow.jpg" height="90" width="200"/>
+  <img src="images/taskrouter.jpg" height="90" width="200" /> 
+  <img src="images/ui.jpg" height="90" width="200" />
 </p>
 
 To start using it, buy a phone number and associate it with the studio flow that was just deployed. Then log in to Flex and wait for the tasks to come your way! :)
