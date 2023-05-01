@@ -1,6 +1,6 @@
 # Twilio Flex with Terraform 
 
-This repository contains terraform configuration for deploying a [Twilio Flex](https://www.twilio.com/en-us/flex) contact center, including all of its usual components - an IVR (Studio flow), rules for routing tasks to agents (Taskrouter configuration), and a Flex plugin for customization.
+This repository contains terraform configuration for deploying a [Twilio Flex](https://www.twilio.com/en-us/flex) contact center, including all of its common components: an IVR (Studio flow), rules for routing tasks to agents (Taskrouter configuration), and a Flex plugin for customization.
 
 It can be used as a blueprint for provisioning a Twilio Flex  contact center using code. 
 
@@ -24,8 +24,8 @@ Provisioning and managing your contact center infrastructure as code offers seve
 
 A Twilio Flex contact center deployment usually consists of the following components:
 - *Studio:* Studio is a visual application builder for creating communication workflows for your contact center, such as IVRs. Studio integrates with TaskRouter to route incoming interactions to the appropriate workflow. 
-- *Taskrouter:* Taskrouter is a skills-based routing engine for distributes incoming interactions, such as calls, or messages to agents based on rules you define.
-- *Flex Plugins:* Flex Plugins provide a framework for building custom components that can be used to customiz and extend the capabilities of Twilio Flex.
+- *Taskrouter:* Taskrouter is a skills-based routing engine for distributing incoming interactions, such as calls, or messages to agents based on rules you define.
+- *Flex Plugins:* Flex Plugins provide a framework for building custom components that can be used to customize and extend the capabilities of Twilio Flex.
 
 The terraform configuration included in this repository includes all three components: deploying the code will result in a complete Flex deployment, containing an IVR (Studio flow), routing configuration, and a sample Flex Plugin.
 
@@ -37,8 +37,6 @@ The terraform configuration included in this repository includes all three compo
 - **terraform/**: Terraform configuration
 
 ## Setup
-
-
 0. Install Terraform and create a Twilio Flex account.
 1. Navigate to the terraform directory: `cd terraform/environments/dev`
 2. Initialize the terraform configuration: `terraform init`
@@ -47,12 +45,12 @@ The terraform configuration included in this repository includes all three compo
     - Start by importing your Taskrouter workspace, with the command:
     `terraform import module.routing twilio_taskrouter_workspaces_v1.flex <WORKSPACE_SID>`.
     
-        You can find the workspace SID in the console, under **Taskrouter > Workspaces > Flex Task Assignment**.
+        You can find the workspace SID in the console, under *Taskrouter > Workspaces > Flex Task Assignment*.
 
     - Import the voice task channel: 
     `terraform import module.routing.twilio_taskrouter_workspaces_task_channels_v1.voice <WORKSPACE_SID>/<TASK_CHANNEL_SID>`. 
 
-        The voice task channel sid can be located in the console, under **Taskrouter > Workspaces > Flex Task Assignment > Task Channels > Voice**.
+        The voice task channel sid can be located in the console, under *Taskrouter > Workspaces > Flex Task Assignment > Task Channels > Voice*.
 
 4. Create the execution plan: `terraform plan --out flex.plan`.
 5. Apply the configuration, creating the resources: `terraform apply`. Terraform will prompt for the following variables: 
