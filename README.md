@@ -46,7 +46,7 @@ More information on the terraform modules is available under their respective di
 3. Import existing resources: when you create a Flex account, certain resources are automatically created for you. These are immutable and therefore need to be imported into your terraform state manually. 
 
     - Start by importing your Taskrouter workspace, with the command:
-    `terraform import module.routing twilio_taskrouter_workspaces_v1.flex <WORKSPACE_SID>`.
+    `terraform import module.routing.twilio_taskrouter_workspaces_v1.flex <WORKSPACE_SID>`.
     
         You can find the workspace SID in the console, under *Taskrouter > Workspaces > Flex Task Assignment*.
 
