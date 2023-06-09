@@ -6,6 +6,7 @@ provider "registry.terraform.io/rjpearson94/twilio" {
   constraints = "0.17.0"
   hashes = [
     "h1:1tH1EHynamLNMl/thm9z+bTc7nxSJNuPt20Lphvf+14=",
+    "h1:PPw4vhycBlHle5TQRZT06HF8StohzDMN8Ux6acEMn38=",
     "zh:1a8e5cd73c7648fa4a25f224736ef098e3e910b9e41d2299b9216980da391873",
     "zh:1fbe7c75915b04be518ba1b0afca1c400a611d79277a93a94dfe6b1b5ab2bd36",
     "zh:229ca87370edf658244aa517116561cea6e5e9a768a180458873541fdf951648",
@@ -27,6 +28,7 @@ provider "registry.terraform.io/twilio/twilio" {
   constraints = ">= 0.4.0"
   hashes = [
     "h1:hudbtx+iBjgzpfdqMZaTHavoW36qcafesdyu1hNwmMY=",
+    "h1:mdIcKjh2UGd4JSFZ1FNvVrZr5UK6rvvIF1UcidgbZM4=",
     "zh:00c473eac8e8a8f4d591f1c916466ef3c018b7e6dca5508ffbb21cef2a7bb4a3",
     "zh:2a3b075dfd1daee7f5cf15921f1d9cdd8d92707f2f4e3e011ba838ed8bcc54a3",
     "zh:2c045e26c1d5c84299b91454f30150803e88fe4ec1712f6c666162f91e8ccbad",
